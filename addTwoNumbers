@@ -1,0 +1,59 @@
+#!/usr/bin/python3
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
+def addTwoNumbers(self,l1,l2):
+	carray = 0
+	current = ListNode(0)
+	self = current
+	while(l1!=None or l2!=None):
+		if l1 == None:
+			x = 0
+		else:
+			x = l1.val
+
+		if l2 == None:
+			y = 0
+		else:
+			y = l2.val
+
+		sum = x + y + carray
+		carray = int(sum/10)
+		current.next = ListNode(sum%10)
+		current = current.next
+		if l1 != None:
+			l1 = l1.next
+		if l2 != None:
+			l2 = l2.next
+	if carray>0:
+		current.next = ListNode(carray)
+	return self.next
+		
+str = input()
+listStr = str.split(" + ")
+list1 = listStr[0][1:len(listStr[0])-1].split(" -> ")
+list2 = listStr[1][1:len(listStr[1])-1].split(" -> ")
+#print(list1)
+#print(list2)
+for i in range(0,len(list1)):
+	if i==0:
+		l1 = ListNode(int(list1[i]))
+		node1 = l1
+	else:
+		node1.next = ListNode(int(list1[i]))
+		node1 = node1.next
+for i in range(0,len(list2)):
+	if i==0:
+		l2 = ListNode(int(list2[i]))
+		node2 = l2
+	else:
+		node2.next = ListNode(int(list2[i]))
+		node2 = node2.next
+node = addTwoNumbers(ListNode(0),l1,l2)
+while node != None:
+	print(node.val)
+	node = node.next
